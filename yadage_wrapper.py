@@ -2,6 +2,7 @@ import random
 import shutil
 import os
 import json
+import numpy as np
 import yadage_widget
 import yadage.steering_object
 from yadage.clihelpers import setupbackend_fromstring, prepare_workdir_from_archive
