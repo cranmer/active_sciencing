@@ -41,6 +41,7 @@ def run_weinberg_yadage(workdir, sqrtshalf = 45, polbeam1 = 0, polbeam2 = 0,Gf =
         'github:lukasheinrich/weinberg-exp:example_yadage',
         initdata, initdir = '{}/init'.format(workdir)
     )
+    ys.adage_argument(default_trackers = False)
     backend = setupbackend_fromstring(backend)
     ys.run_adage(backend)
 
