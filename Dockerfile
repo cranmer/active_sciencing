@@ -13,6 +13,7 @@ ENTRYPOINT ["/usr/bin/tini", "--"]
 
 ADD . /notebook
 WORKDIR /notebook
+RUN mkdir -p ~/.jupyter; printf  "import os\nc.NotebookApp.token = os.environ['THEJUPYTERTOKEN']\n" >> ~/.jupyter/jupyter_notebook_config.py
 
 EXPOSE 8888
 CMD ["jupyter", "notebook", "--port=8888", "--no-browser", "--ip=0.0.0.0", "--allow-root"]
