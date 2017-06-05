@@ -1,0 +1,6 @@
+jupyter
+matplotlib
+scipy
+numpy
+scikit-learn
+scikit-optimize
