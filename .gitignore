@@ -1,2 +1,4 @@
 
 .ipynb_checkpoints/*
+
+__pycache__/prior_dist.cpython-35.pyc
