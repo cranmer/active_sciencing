@@ -38,11 +38,11 @@ class Distribution:
         """Plot distribution samples as histogram"""
         ax.hist(self.samples, range=self.range, **kwargs)
 
-    def plot(self,*args,**kwargs):
+    def plot(self,ax = plt, *args,**kwargs):
         """Draw distribution using KDE"""
         xs = np.linspace(*self.range, num = 100)
         logpdf = self.approx_logpdf()
-        plt.plot(xs, np.exp(logpdf(xs)))
+        ax.plot(xs, np.exp(logpdf(xs)))
 
     def pdf(self, theta):
         kernel = gaussian_kde(self.samples[~np.isnan(self.samples)])
