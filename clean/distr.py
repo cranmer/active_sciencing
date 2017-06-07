@@ -34,9 +34,9 @@ class Distribution:
         prob = prob.clip(min=0.0000000001)
         return entropy(prob)
 
-    def hist(self,**kwargs):
+    def hist(self,ax = plt, **kwargs):
         """Plot distribution samples as histogram"""
-        plt.hist(self.samples, range=self.range, **kwargs)
+        ax.hist(self.samples, range=self.range, **kwargs)
 
     def plot(self,*args,**kwargs):
         """Draw distribution using KDE"""
