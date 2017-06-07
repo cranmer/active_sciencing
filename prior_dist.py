@@ -20,11 +20,15 @@ class Distribution:
         else:
             self.samples = samples
 
-    def map(self):
+    def map(self,bins = 100):
         """Calculate maximum a posterior estimate"""
-        prob, edges = np.histogram(self.samples, range=self.range, bins=100)
+        prob, edges = np.histogram(self.samples, range=self.range, bins=bins)
+        bin_widths = edges[1:] - edges[:-1]
+#        print prob
+#        plt.p
         prob = prob.clip(min=0.0000000001)
-        return edges[np.argmax(prob)]
+        max_index = np.argmax(prob)
+        return edges[max_index]+bin_widths[max_index]/2.
 
     def entropy(self):
         """Compute Shannon entropy of this distribution"""
@@ -32,13 +36,13 @@ class Distribution:
         prob = prob.clip(min=0.0000000001)
         return entropy(prob)
 
-    def hist(self):
+    def hist(self,bins = 100,normed = False):
         """Plot distribution samples as histogram"""
-        plt.hist(self.samples, range=self.range, bins=100, histtype='step')
+        plt.hist(self.samples, range=self.range, bins=bins, histtype='step',normed = True)
 
     def plot(self):
         """Draw distribution using KDE"""
-        xs = np.linspace(*self.range, 100)
+        xs = np.linspace(*self.range, num = 100)
         kernel = gaussian_kde(self.samples[~np.isnan(self.samples)])
         plt.plot(xs, [kernel(x) for x in xs])
 
