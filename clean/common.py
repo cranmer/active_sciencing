@@ -78,10 +78,23 @@ def expected_information_gain(phi, prior, emcee_kwargs, map_bins = 20):
     return np.mean(eig)
 
 
+def expected_information_gain_dummy(phi, prior, emcee_kwargs, map_bins = 20):
+    'calculate the expression above using workflow for simulations'
+    print 'EIG',phi
+    n_simulations = 4
+    n_parallel = 4
+    
+    phi = phi[0]
+
+    # use saddle-point approximation
+    theta_map = prior.map(bins = map_bins)
+
+    return 1.0
+
 from skopt import gp_minimize
 def design_next_experiment(prior,phi_bounds, eig_kwargs, n_totalcalls=10, n_random_calls = 5):
     bounds = [phi_bounds]
-    func = lambda p: -expected_information_gain(p, prior,**eig_kwargs)
+    func = lambda p: -expected_information_gain_dummy(p, prior,**eig_kwargs)
 
     # five random points to initialise things, then five using the GP model
     # XXX Should we be reusing the random number generator? Means this call eseentially evaluates
