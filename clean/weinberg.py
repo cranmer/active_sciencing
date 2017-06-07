@@ -1,8 +1,6 @@
 import numpy as np
 import sys
 
-THETA_NATURE = 1.5
-
 def a_fb(sqrtshalf,gf):
     MZ = 90
     GFNom = 1.0
