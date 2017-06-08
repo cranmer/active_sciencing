@@ -1,16 +1,24 @@
-import gaussian
 import math
+import gaussian
 
-PHI_RANGE     = [ 0.,6.]
-THETA_RANGE   = [-2.,2.]
-DATA_RANGE    = [-5.,5.] 
-THE_SIMULATOR = gaussian.simulator
+name = 'gaussian'
+
+phi_range     = [ 0.,6.]
+theta_range   = [-2.,2.]
+data_range    = [-5.,5.] 
+simulator     = gaussian.simulator
 
 
-model_details_shifts = [-10.,10.]
-model_details_mirror = False
-model_details_lnlike_nsim = 1000
-model_details_map_bins = 20
+details_shifts = [-10.,10.]
+details_mirror = False
+details_lnlike_nsim = 1000
+details_map_bins = 20
+details_likelihood_settings = {
+    'simulator': simulator,
+    'simulation_kwargs': {'n_samples': 200},
+    'distr_kwargs': {'range': data_range},
+    'logpdf_kwargs': {'mirror': details_mirror, 'mirror_shifts': details_shifts}
+}
 
 intro_theta_nom = 0.0
 intro_phi_noms  = math.pi,math.pi/2.
@@ -21,9 +29,3 @@ example_theta = 1.
 example_ndata = 100
 
 
-model_details_likelihood_settings = {
-    'simulator': THE_SIMULATOR,
-    'simulation_kwargs': {'n_samples': 200},
-    'distr_kwargs': {'range': DATA_RANGE},
-    'logpdf_kwargs': {'mirror': model_details_mirror, 'mirror_shifts': model_details_shifts}
-}
