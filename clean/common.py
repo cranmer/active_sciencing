@@ -34,7 +34,8 @@ def calculate_posterior(prior, data, phi, n_walkers = 10, n_warmup = 10, n_chain
     
     sampler = emcee.EnsembleSampler(
         n_walkers, 1, lnprob,
-        args=(data,prior,phi,lnprob_args)
+        args=(data,prior,phi,lnprob_args),
+        # threads = n_walkers
     )
     pos, prob, state = sampler.run_mcmc(pos, n_warmup)
     
