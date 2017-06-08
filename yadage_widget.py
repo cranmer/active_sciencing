@@ -16,10 +16,11 @@ class WorkflowWidget(widgets.DOMWidget):
     def update(self):
         update_widget(self,self.wflow)
 
-    def __init__(self,wflow):
-        self.wflow = wflow
+    def __init__(self,wflow = None):
         super(WorkflowWidget,self).__init__()
-        self.update()
+        if wflow:
+            self.wflow = wflow
+            self.update()
 
     def reset(self,name,offset = ''):
         yadage.reset.reset_state(self.wflow,offset,name)
@@ -38,3 +39,4 @@ class ViewTracker(object):
         self.widget.dotstring = adage.visualize.colorize_graph_at_time(adageobj.dag,time.time()).to_string()
     def finalize(self,adageobj):
         self.widget.dotstring = adage.visualize.colorize_graph_at_time(adageobj.dag,time.time()).to_string()
+
