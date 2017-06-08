@@ -1,4 +1,5 @@
 from scipy.stats import entropy, gaussian_kde
+from scipy.optimize import fmin
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -22,9 +23,8 @@ class Distribution:
 
     def map(self):
         """Calculate maximum a posterior estimate"""
-        prob, edges = np.histogram(self.samples, range=self.range, bins=100)
-        prob = prob.clip(min=0.0000000001)
-        return edges[np.argmax(prob)]
+        kernel = gaussian_kde(self.samples[~np.isnan(self.samples)])
+        return fmin(lambda x: -kernel(x), x0=0.3, disp=False)[0]
 
     def entropy(self):
         """Compute Shannon entropy of this distribution"""
