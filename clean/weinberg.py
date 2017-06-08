@@ -30,7 +30,6 @@ def rej_sample_costheta(nsamples,sqrtshalf,gf):
     return np.array(samples)
 
 def simulator(theta,phi,n_samples):
-    sys.stdout.write('.')
     samples =  rej_sample_costheta(n_samples,phi,theta)
     return samples
 

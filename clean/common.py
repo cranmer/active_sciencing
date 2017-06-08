@@ -24,10 +24,6 @@ def lnprob(theta, x, prior, phi, lnlike_kwargs):
         return -np.inf
     return lp + lnlike(theta, x, phi,**lnlike_kwargs)
 
-def collect_data(phi, simulator, theta_nature, n_samples = 500):
-    return simulator(theta_nature,phi,n_samples)
-
-
 def calculate_posterior(prior, data, phi, n_walkers = 10, n_warmup = 10, n_chainlen = 20, lnprob_args = None):
     """Compute samples from the posterior"""
     ndim, n_walkers = 1, n_walkers
@@ -100,5 +96,3 @@ def design_next_experiment_simplegrid(prior,phi_bounds, eig_kwargs, n_points=6):
     eig = np.array(eig)
     next_phi = eig_test_phis[np.argmax(eig)]
     return next_phi, eig_test_phis, eig
-
-

@@ -8,7 +8,8 @@ stages:
          phi: {stages: init, output: phi, unwrap: true}
          n_samples: {stages: init, output: n_samples, unwrap: true}
          outfile: '{workdir}/out.np'
-      step: {$ref: 'steps.yml#/weinberg'}
+         delay: 5
+      step: {$ref: 'steps.yml#/weinberg_delay'}
   - name: detsim
     dependencies: [generate]
     scheduler:
@@ -16,7 +17,8 @@ stages:
       parameters:
          inputfile:   {stages: generate, output: outfile, unwrap: true}
          outfile:  '{workdir}/out.np'
-      step: {$ref: 'steps.yml#/softlink'}
+         delay: 5
+      step: {$ref: 'steps.yml#/softlink_delay'}
   - name: recontructiona
     dependencies: [detsim]
     scheduler:
@@ -24,7 +26,8 @@ stages:
       parameters:
          inputfile:   {stages: detsim, output: outfile, unwrap: true}
          outfile:  '{workdir}/out.np'
-      step: {$ref: 'steps.yml#/softlink'}
+         delay: 5
+      step: {$ref: 'steps.yml#/softlink_delay'}
   - name: feature_extraction
     dependencies: [recontructiona]
     scheduler:
@@ -32,4 +35,5 @@ stages:
       parameters:
          inputfile:   {stages: recontructiona, output: outfile, unwrap: true}
          outfile:  '{workdir}/out.np'
-      step: {$ref: 'steps.yml#/softlink'}
+         delay: 5
+      step: {$ref: 'steps.yml#/softlink_delay'}

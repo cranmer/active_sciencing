@@ -8,7 +8,6 @@ theta_range   = [-2.,2.]
 data_range    = [-5.,5.] 
 simulator     = gaussian.simulator
 
-
 details_shifts = [-10.,10.]
 details_mirror = False
 details_lnlike_nsim = 1000

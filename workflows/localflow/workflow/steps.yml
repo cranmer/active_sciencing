@@ -1,7 +1,29 @@
+weinberg_delay:
+  process:
+    process_type: string-interpolated-cmd
+    cmd: weinberg-fast {phi} {theta} {n_samples} {outfile} {delay}
+  environment:
+    environment_type: localproc-env
+  publisher:
+    publisher_type: 'frompar-pub'
+    outputmap:
+      outfile: 'outfile'
+
 weinberg:
   process:
     process_type: string-interpolated-cmd
     cmd: weinberg-fast {phi} {theta} {n_samples} {outfile}
+  environment:
+    environment_type: localproc-env
+  publisher:
+    publisher_type: 'frompar-pub'
+    outputmap:
+      outfile: 'outfile'
+
+softlink_delay:
+  process:
+    process_type: string-interpolated-cmd
+    cmd: sleep {delay} && ln -s {inputfile} {outfile}
   environment:
     environment_type: localproc-env
   publisher:

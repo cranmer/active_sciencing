@@ -13,6 +13,9 @@ ENTRYPOINT ["/usr/bin/tini", "--"]
 
 ADD . /notebook
 WORKDIR /notebook
+
+RUN cd workflows/localflow && pip install -e .
+
 RUN pip install -r requirements.txt
 RUN mkdir -p ~/.jupyter; printf  "import os\nc.NotebookApp.token = os.environ['THEJUPYTERTOKEN']\n" >> ~/.jupyter/jupyter_notebook_config.py
 
