@@ -1,0 +1,21 @@
+weinberg:
+  process:
+    process_type: string-interpolated-cmd
+    cmd: weinberg-fast {phi} {theta} {n_samples} {outfile}
+  environment:
+    environment_type: localproc-env
+  publisher:
+    publisher_type: 'frompar-pub'
+    outputmap:
+      outfile: 'outfile'
+
+softlink:
+  process:
+    process_type: string-interpolated-cmd
+    cmd: ln -s {inputfile} {outfile}
+  environment:
+    environment_type: localproc-env
+  publisher:
+    publisher_type: 'frompar-pub'
+    outputmap:
+      outfile: 'outfile'
