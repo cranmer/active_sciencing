@@ -1,6 +1,9 @@
 import distr
 import numpy as np
 import emcee
+from multiprocessing import Pool
+from skopt import gp_minimize
+
 def lnprior(theta, prior):
     p = prior.pdf(theta)
     if p <= 1e-8:
@@ -42,7 +45,6 @@ def calculate_posterior(prior, data, phi, n_walkers = 10, n_warmup = 10, n_chain
     pos, prob, state = sampler.run_mcmc(pos, n_chainlen)
     return distr.Distribution(prior.name, prior.range, sampler.flatchain[:,0])
 
-from multiprocessing import Pool
 
 def info_gain(p1, p2):
     return p1.entropy() - p2.entropy()
@@ -75,10 +77,10 @@ def expected_information_gain(phi, prior, emcee_kwargs, sim_n_data , map_bins):
     eig = pool.map(_simulate, [(theta_map, phi, prior,sim_n_data,emcee_kwargs) for i in range(n_simulations)])
     pool.close()
     pool.join()
+    print 'closing pool'
     return np.mean(eig)
 
 
-from skopt import gp_minimize
 def design_next_experiment_bayesopt(prior,phi_bounds, eig_kwargs, n_totalcalls=10, n_random_calls = 5):
     bounds = [phi_bounds]
     func = lambda p: -expected_information_gain(p, prior,**eig_kwargs)
