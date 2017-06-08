@@ -1,6 +1,7 @@
 import distr
 import numpy as np
 import emcee
+import datetime
 from multiprocessing import Pool
 from skopt import gp_minimize
 
@@ -51,7 +52,6 @@ def info_gain(p1, p2):
 
 def _simulate(args):
     theta_map, phi, prior, sim_n_data, emcee_kwargs = args
-    print 'simulating with ',theta_map, phi
     # external workflow provides simulated data
     sim_data = emcee_kwargs['lnprob_args']['simulator'](theta_map, phi, n_samples = 1000)
 
@@ -61,7 +61,6 @@ def _simulate(args):
 
 def expected_information_gain(phi, prior, emcee_kwargs, sim_n_data , map_bins):
     'calculate the expression above using workflow for simulations'
-    print 'EIG',phi
     n_simulations = 4
     n_parallel = 4
     
@@ -71,13 +70,14 @@ def expected_information_gain(phi, prior, emcee_kwargs, sim_n_data , map_bins):
     # use saddle-point approximation
     theta_map = prior.map(bins = map_bins)
 
+    print str(datetime.datetime.now()),'EIG via 4 parallel experiments with [theta,phi]',theta_map,phi
+
     # currently the MCMC sampler is the slower part, which already uses threads so we don't gain
     # this should change once we have a more realistic simulator that takes time to run
     pool = Pool(n_parallel)
     eig = pool.map(_simulate, [(theta_map, phi, prior,sim_n_data,emcee_kwargs) for i in range(n_simulations)])
     pool.close()
     pool.join()
-    print 'closing pool'
     return np.mean(eig)
 
 
