@@ -10,7 +10,7 @@ weinberg:
       np.save(open('{outfile}','w'), data)
   environment:
     environment_type: docker-encapsulated
-    image: dummywein
+    image: lukasheinrich/ycomb_fastweinberg
   publisher:
     publisher_type: 'frompar-pub'
     outputmap:
