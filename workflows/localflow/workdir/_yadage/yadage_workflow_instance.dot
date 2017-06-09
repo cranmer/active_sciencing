@@ -1,0 +1,68 @@
+digraph G {
+subgraph cluster_ {
+color=blue;
+label="";
+style=solid;
+subgraph cluster_detsim {
+color=grey;
+label=detsim;
+labeljust=l;
+style=dashed;
+"0483a180e42a866615a6a886257f54619f39581e" [color=blue, label="detsim[0]", shape=box];
+"0483a180e42a866615a6a886257f54619f39581e__outfile" [color=red, label="[outfile]"];
+"0483a180e42a866615a6a886257f54619f39581e" -> "0483a180e42a866615a6a886257f54619f39581e__outfile";
+}
+
+subgraph cluster_recontructiona {
+color=grey;
+label=recontructiona;
+labeljust=l;
+style=dashed;
+a8e8d2f9d5963831f538607a833ff6af1ba69c24 [color=blue, label="recontructiona[0]", shape=box];
+a8e8d2f9d5963831f538607a833ff6af1ba69c24__outfile [color=red, label="[outfile]"];
+a8e8d2f9d5963831f538607a833ff6af1ba69c24 -> a8e8d2f9d5963831f538607a833ff6af1ba69c24__outfile;
+}
+
+subgraph cluster_init {
+color=grey;
+label=init;
+labeljust=l;
+style=dashed;
+}
+
+"5abccf6823d64bdecc4a6c25038dd9fd30e7a8fd" [color=blue, fixedsize=True, height=0.2, label="", shape=diamond, width=0.2];
+"5abccf6823d64bdecc4a6c25038dd9fd30e7a8fd__theta" [color=red, label="[theta]"];
+"5abccf6823d64bdecc4a6c25038dd9fd30e7a8fd" -> "5abccf6823d64bdecc4a6c25038dd9fd30e7a8fd__theta";
+"5abccf6823d64bdecc4a6c25038dd9fd30e7a8fd__phi" [color=red, label="[phi]"];
+"5abccf6823d64bdecc4a6c25038dd9fd30e7a8fd" -> "5abccf6823d64bdecc4a6c25038dd9fd30e7a8fd__phi";
+"5abccf6823d64bdecc4a6c25038dd9fd30e7a8fd__n_samples" [color=red, label="[n_samples]"];
+"5abccf6823d64bdecc4a6c25038dd9fd30e7a8fd" -> "5abccf6823d64bdecc4a6c25038dd9fd30e7a8fd__n_samples";
+subgraph cluster_generate {
+color=grey;
+label=generate;
+labeljust=l;
+style=dashed;
+"1419713e4025a908173cf21991b443e58a1be4aa" [color=blue, label="generate[0]", shape=box];
+"1419713e4025a908173cf21991b443e58a1be4aa__outfile" [color=red, label="[outfile]"];
+"1419713e4025a908173cf21991b443e58a1be4aa" -> "1419713e4025a908173cf21991b443e58a1be4aa__outfile";
+}
+
+subgraph cluster_feature_extraction {
+color=grey;
+label=feature_extraction;
+labeljust=l;
+style=dashed;
+"5c1139745c6f31114ecddc63a402557e9a006e67" [color=blue, label="feature_extraction[0]", shape=box];
+"5c1139745c6f31114ecddc63a402557e9a006e67__outfile" [color=red, label="[outfile]"];
+"5c1139745c6f31114ecddc63a402557e9a006e67" -> "5c1139745c6f31114ecddc63a402557e9a006e67__outfile";
+}
+
+}
+
+a8e8d2f9d5963831f538607a833ff6af1ba69c24__outfile -> "5c1139745c6f31114ecddc63a402557e9a006e67";
+"5abccf6823d64bdecc4a6c25038dd9fd30e7a8fd__phi" -> "1419713e4025a908173cf21991b443e58a1be4aa";
+"5abccf6823d64bdecc4a6c25038dd9fd30e7a8fd__theta" -> "1419713e4025a908173cf21991b443e58a1be4aa";
+"5abccf6823d64bdecc4a6c25038dd9fd30e7a8fd__n_samples" -> "1419713e4025a908173cf21991b443e58a1be4aa";
+"1419713e4025a908173cf21991b443e58a1be4aa__outfile" -> "0483a180e42a866615a6a886257f54619f39581e";
+"0483a180e42a866615a6a886257f54619f39581e__outfile" -> a8e8d2f9d5963831f538607a833ff6af1ba69c24;
+}

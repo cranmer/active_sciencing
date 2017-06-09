@@ -1,0 +1,15 @@
+========== ADAGE LOG BEGIN at 2017-06-08T22:14:59.096786 ==========
+---------- snapshot at 2017-06-08T22:14:59.096874
+---------- snapshot at 2017-06-08T22:14:59.494143
+name: init obj: <YadageNode init DEFINED lifetime: 0:00:00.292841  runtime: None (id: 5abccf6823d64bdecc4a6c25038dd9fd30e7a8fd) has result: True> submitted: True
+name: generate obj: <YadageNode generate DEFINED lifetime: 0:00:00.178949  runtime: None (id: 1419713e4025a908173cf21991b443e58a1be4aa) has result: True> submitted: False
+name: detsim obj: <YadageNode detsim DEFINED lifetime: 0:00:00.109915  runtime: None (id: 0483a180e42a866615a6a886257f54619f39581e) has result: True> submitted: False
+name: recontructiona obj: <YadageNode recontructiona DEFINED lifetime: 0:00:00.051641  runtime: None (id: a8e8d2f9d5963831f538607a833ff6af1ba69c24) has result: True> submitted: False
+name: feature_extraction obj: <YadageNode feature_extraction DEFINED lifetime: 0:00:00.000618  runtime: None (id: 5c1139745c6f31114ecddc63a402557e9a006e67) has result: True> submitted: False
+---------- snapshot at 2017-06-08T22:15:03.524418
+name: init obj: <YadageNode init SUCCESS lifetime: 0:00:04.323265  runtime: 0:00:00.026545 (id: 5abccf6823d64bdecc4a6c25038dd9fd30e7a8fd) has result: True> submitted: True
+name: generate obj: <YadageNode generate SUCCESS lifetime: 0:00:04.209362  runtime: 0:00:00.022569 (id: 1419713e4025a908173cf21991b443e58a1be4aa) has result: True> submitted: True
+name: detsim obj: <YadageNode detsim SUCCESS lifetime: 0:00:04.140344  runtime: 0:00:00.020654 (id: 0483a180e42a866615a6a886257f54619f39581e) has result: True> submitted: True
+name: recontructiona obj: <YadageNode recontructiona SUCCESS lifetime: 0:00:04.082091  runtime: 0:00:00.021454 (id: a8e8d2f9d5963831f538607a833ff6af1ba69c24) has result: True> submitted: True
+name: feature_extraction obj: <YadageNode feature_extraction SUCCESS lifetime: 0:00:04.031094  runtime: 0:00:00.021496 (id: 5c1139745c6f31114ecddc63a402557e9a006e67) has result: True> submitted: True
+========== ADAGE LOG END at 2017-06-08T22:15:03.524925 ==========
