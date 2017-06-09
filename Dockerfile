@@ -1,6 +1,7 @@
 FROM yadage/yadage:git-master
 RUN pip install matplotlib numpy scipy
-RUN pip install ipython==5.4.1 jupyter redis celery
+RUN pip install ipython==5.4.1 jupyter redis celery 
+RUN yum install -y tkinter
 RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension
 ENV PYTHONPATH /notebook
 
