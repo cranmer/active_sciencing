@@ -94,7 +94,6 @@ def expected_information_gain(phi, prior, emcee_kwargs, sim_n_data , map_bins, w
 def design_next_experiment_bayesopt(prior,phi_bounds, eig_kwargs,
     n_totalcalls=10, n_random_calls = 5, ax = None, fig = None):
 
-
     opt  = bayesopt.get_optimizer(phi_bounds,n_random_calls)
     func = lambda p: -expected_information_gain(p, prior,**eig_kwargs)
 
@@ -102,34 +101,19 @@ def design_next_experiment_bayesopt(prior,phi_bounds, eig_kwargs,
         # ask next x
         next_x = opt.ask()
 
-        print 'ASK',next_x
+        # print 'ASK',next_x
         next_f = func(next_x)
 
-        print 'TELL',next_f
+        # print 'TELL',next_f
         # tell a pair to the optimizer
         res = opt.tell(next_x, next_f)
-        print 'DATA',res.x_iters,res.func_vals
+        # print 'DATA',res.x_iters,res.func_vals
 
         if ax:
             ax.clear()
             plots.plot_bayes(res, phi_range = phi_bounds, ax = ax)
             fig.canvas.draw()
     return res, res.x[0], res.x_iters
-
-
-
-
-
-
-    # bounds = [phi_bounds]
-    # func = lambda p: -expected_information_gain(p, prior,**eig_kwargs)
-
-    # # five random points to initialise things, then five using the GP model
-    # # XXX Should we be reusing the random number generator? Means this call eseentially evaluates
-    # # XXX the same values of phi each science iteration
-    # opt_result = gp_minimize(func, bounds, n_random_starts=n_random_calls, n_calls=n_totalcalls, random_state=4)
-
-    # return opt_result, opt_result.x[0], opt_result.x_iters
 
 def design_next_experiment_simplegrid(prior,phi_bounds, eig_kwargs, n_points=6):
     eig_test_phis = np.linspace(*phi_bounds, num = n_points)
