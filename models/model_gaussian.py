@@ -28,6 +28,5 @@ example_phi = math.pi/2.
 example_theta = 1.
 example_ndata = 100
 
-
 def collect_widget():
 	return widgets.IntProgress(min = 0, max = 10, description = 'Taking Data.. ')

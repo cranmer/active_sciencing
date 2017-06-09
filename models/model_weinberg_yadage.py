@@ -1,7 +1,8 @@
 import math
 import yadage_sim_local
+import yadage_widget
 
-name = 'weinberg'
+name = 'weinberg_yadage'
 
 phi_range     = [40.,50.]
 theta_range   = [0.5,1.5]
@@ -27,4 +28,5 @@ example_phi = 47.
 example_theta = 1.0
 example_ndata = 100
 
-
+def collect_widget():
+	return yadage_widget.WorkflowWidget(None)

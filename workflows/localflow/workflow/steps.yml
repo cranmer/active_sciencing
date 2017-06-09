@@ -1,7 +1,7 @@
 weinberg_delay:
   process:
     process_type: string-interpolated-cmd
-    cmd: weinberg-fast {phi} {theta} {n_samples} {outfile} {delay}
+    cmd: weinberg-fast {theta} {phi} {n_samples} {outfile} {delay}
   environment:
     environment_type: localproc-env
   publisher:
@@ -12,7 +12,7 @@ weinberg_delay:
 weinberg:
   process:
     process_type: string-interpolated-cmd
-    cmd: weinberg-fast {phi} {theta} {n_samples} {outfile}
+    cmd: weinberg-fast {theta} {phi} {n_samples} {outfile}
   environment:
     environment_type: localproc-env
   publisher:

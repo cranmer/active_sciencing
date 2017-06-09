@@ -1,5 +1,7 @@
 import numpy as np
 import sys
+import time
+import random
 
 def a_fb(sqrtshalf,gf):
     MZ = 90
@@ -29,8 +31,10 @@ def rej_sample_costheta(nsamples,sqrtshalf,gf):
         samples.append(xprop)
     return np.array(samples)
 
-def simulator(theta,phi,n_samples):
+def simulator(theta,phi,n_samples, widget = None, delay = False):
     samples =  rej_sample_costheta(n_samples,phi,theta)
+    if delay:
+        for i in range(widget.max):
+            time.sleep(random.random())
+            widget.value = widget.value + 1         
     return samples
-
-

@@ -14,8 +14,8 @@ define('yadage', ["jupyter-js-widgets","vis"], function(widgets,vis) {
             this.container = document.createElement('div');
             this.container.innerHTML = 'hello'
             this.el.appendChild(this.container);
-            this.container.style.height="500px";
-            this.container.style.width="500px";
+            this.container.style.height="200px";
+            this.container.style.width="200px";
             var DOTstring = data;
             console.log('hello')
             console.log(DOTstring)

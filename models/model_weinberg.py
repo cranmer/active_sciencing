@@ -1,5 +1,6 @@
 import math
 import weinberg
+from ipywidgets import widgets
 
 name = 'weinberg'
 
@@ -27,4 +28,5 @@ example_phi = 47.
 example_theta = 1.0
 example_ndata = 100
 
-
+def collect_widget():
+	return widgets.IntProgress(min = 0, max = 10, description = 'Taking Data.. ')
