@@ -2,12 +2,12 @@ import numpy as np
 from skopt import Optimizer
 from skopt.learning import GaussianProcessRegressor
 from skopt.learning.gaussian_process.kernels import ConstantKernel
-from skopt.learning.gaussian_process.kernels import Matern
+from skopt.learning.gaussian_process.kernels import Matern, WhiteKernel
 
 NRANDOM = 3
 NTOTAL = 10
 
-cov_amplitude = ConstantKernel(1.0, (0.01, 1000.0))
+cov_amplitude = ConstantKernel(1.0, (0.01, 5.0))
 
 other_kernel = Matern(
     length_scale=np.ones(1),
@@ -15,7 +15,7 @@ other_kernel = Matern(
     nu=2.5)
 
 gp = GaussianProcessRegressor(
-    kernel=cov_amplitude * other_kernel,
+    kernel=cov_amplitude * other_kernel + WhiteKernel(),
     normalize_y=True, alpha=0.0, noise=10e-7,
     n_restarts_optimizer=2)
 
