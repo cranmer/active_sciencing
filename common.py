@@ -101,10 +101,15 @@ def design_next_experiment_bayesopt(prior,phi_bounds, eig_kwargs,
     for i in range(n_totalcalls):
         # ask next x
         next_x = opt.ask()
+
+        print 'ASK',next_x
         next_f = func(next_x)
 
+        print 'TELL',next_f
         # tell a pair to the optimizer
         res = opt.tell(next_x, next_f)
+        print 'DATA',res.x_iters,res.func_vals
+
         if ax:
             ax.clear()
             plots.plot_bayes(res, phi_range = phi_bounds, ax = ax)
