@@ -26,7 +26,7 @@ def simulator(theta,phi,n_samples, widget = None, delay = False):
 
     ys.init_workflow(
         'workflow_delay.yml' if delay else 'workflow.yml',
-        '../workflows/localflow/workflow',
+        'workflows/localflow/workflow',
         initdata
     )
 
@@ -38,5 +38,5 @@ def simulator(theta,phi,n_samples, widget = None, delay = False):
     ys.run_adage(backend)
 
     data = np.load(open(ys.controller.adageobj.view().getSteps('feature_extraction')[0].result['outfile']))
-    shutil.rmtree(workdir)l
+    shutil.rmtree(workdir)
     return data
