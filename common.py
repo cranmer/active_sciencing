@@ -92,17 +92,19 @@ def expected_information_gain(phi, prior, emcee_kwargs, sim_n_data , map_bins, w
 
 
 def design_next_experiment_bayesopt(prior,phi_bounds, eig_kwargs,
-    n_totalcalls=10, n_random_calls = 5, ax = None, fig = None):
+    n_totalcalls=10, n_random_calls = 5, ax = None, fig = None, widget = None):
 
     opt  = bayesopt.get_optimizer(phi_bounds,n_random_calls)
     func = lambda p: -expected_information_gain(p, prior,**eig_kwargs)
 
+    widget.value = 0
     for i in range(n_totalcalls):
         # ask next x
         next_x = opt.ask()
 
         # print 'ASK',next_x
         next_f = func(next_x)
+        widget.value = widget.value + 1
 
         # print 'TELL',next_f
         # tell a pair to the optimizer
