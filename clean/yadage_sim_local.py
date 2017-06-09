@@ -38,5 +38,5 @@ def simulator(theta,phi,n_samples, widget = None, delay = False):
     ys.run_adage(backend)
 
     data = np.load(open(ys.controller.adageobj.view().getSteps('feature_extraction')[0].result['outfile']))
-    shutil.rmtree(workdir)
+    shutil.rmtree(workdir)l
     return data
