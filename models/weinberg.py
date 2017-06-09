@@ -34,6 +34,7 @@ def rej_sample_costheta(nsamples,sqrtshalf,gf):
 def simulator(theta,phi,n_samples, widget = None, delay = False):
     samples =  rej_sample_costheta(n_samples,phi,theta)
     if delay:
+        widget.value = 0
         for i in range(widget.max):
             time.sleep(random.random())
             widget.value = widget.value + 1         
