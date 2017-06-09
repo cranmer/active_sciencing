@@ -16,10 +16,10 @@ class loopwidget(object):
             self.view.children[i].value = self.html(self.string_map[i])
         
     def html(self, text, background_color = 'white'):
-        textcolor = 'black' if background_color=='white' else 'white'
+        textcolor = 'black'
         return '<span style="font-size: {}px;font-weight: bold; background-color: {}; color: {}; width: 100%;">{}</span>'.format(self.fontsize, background_color,textcolor,text)
 
     def toggle(self,active = None):
         for i in range(3):
-            self.view.children[i].value = self.html(self.string_map[i],'green' if active == i else 'white')
+            self.view.children[i].value = self.html(self.string_map[i],'#2196F3' if active == i else 'white')
         
