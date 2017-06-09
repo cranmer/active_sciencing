@@ -3,7 +3,7 @@ from ipywidgets import widgets
 class loopwidget(object):
     def __init__(self):
         self.fontsize = 20
-        layout = widgets.Layout(height = '50px', width = '400px')
+        layout = widgets.Layout(height = '50px', width = '200px')
         collect_data = widgets.HTML(layout = layout)
         calculate_posterior = widgets.HTML(layout = layout)
         next_exp = widgets.HTML(layout = layout)

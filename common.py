@@ -6,6 +6,7 @@ from multiprocessing import Pool
 from skopt import gp_minimize
 import bayesopt
 import plots
+import time
 
 def lnprior(theta, prior):
     p = prior.pdf(theta)
@@ -58,7 +59,7 @@ def _simulate(args):
     sim_posterior = calculate_posterior(prior, sim_data, phi,**emcee_kwargs)
     return info_gain(prior, sim_posterior)
 
-def expected_information_gain(phi, prior, emcee_kwargs, sim_n_data , map_bins):
+def expected_information_gain(phi, prior, emcee_kwargs, sim_n_data , map_bins, widget = None):
     'calculate the expression above using workflow for simulations'
     n_simulations = 4
     n_parallel = 4
@@ -66,6 +67,9 @@ def expected_information_gain(phi, prior, emcee_kwargs, sim_n_data , map_bins):
     phi = phi[0]
     #need to pass in prior through some extra arguments
     
+    widget.max = n_simulations
+    widget.value = 0
+
     # use saddle-point approximation
     theta_map = prior.map(bins = map_bins)
 
@@ -74,13 +78,21 @@ def expected_information_gain(phi, prior, emcee_kwargs, sim_n_data , map_bins):
     # currently the MCMC sampler is the slower part, which already uses threads so we don't gain
     # this should change once we have a more realistic simulator that takes time to run
     pool = Pool(n_parallel)
-    eig = pool.map(_simulate, [(theta_map, phi, prior,sim_n_data,emcee_kwargs) for i in range(n_simulations)])
+
+    eig_results = [pool.apply_async(_simulate, args = ([theta_map, phi, prior,sim_n_data,emcee_kwargs],)) for i in range(n_simulations)]
+
+    while not all([r.ready() for r in eig_results]):
+        time.sleep(0.01)
+        widget.value = [r.ready() for r in eig_results].count(True)
+
+    eig = [r.get() for r in eig_results]
     pool.close()
     pool.join()
     return np.mean(eig)
 
 
-def design_next_experiment_bayesopt(prior,phi_bounds, eig_kwargs, n_totalcalls=10, n_random_calls = 5, ax = None, fig = None):
+def design_next_experiment_bayesopt(prior,phi_bounds, eig_kwargs,
+    n_totalcalls=10, n_random_calls = 5, ax = None, fig = None):
 
 
     opt  = bayesopt.get_optimizer(phi_bounds,n_random_calls)
