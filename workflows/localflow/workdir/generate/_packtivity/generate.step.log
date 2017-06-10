@@ -1,0 +1,4 @@
+2017-06-08 22:14:59,562 - packtivity_logger_generate.step - INFO - running local command weinberg-fast 42 1.0 100 /Users/lukas/Code/active_sciencing/workflows/localflow/workdir/generate/out.np
+2017-06-08 22:14:59,562 - packtivity_logger_generate.step - INFO - changing to workdirectory /Users/lukas/Code/active_sciencing/workflows/localflow/workdir/generate
+2017-06-08 22:15:00,086 - packtivity_logger_generate.step - INFO - changing back to original directory /Users/lukas/Code/active_sciencing/workflows/localflow
+2017-06-08 22:15:00,092 - packtivity_logger_generate.step - INFO - publishing data: {'outfile': '/Users/lukas/Code/active_sciencing/workflows/localflow/workdir/generate/out.np'}

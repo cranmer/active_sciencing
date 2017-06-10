@@ -1,0 +1,39 @@
+stages:
+  - name: generate
+    dependencies: [init]
+    scheduler:
+      scheduler_type: singlestep-stage
+      parameters:
+         theta: {stages: init, output: theta, unwrap: true}
+         phi: {stages: init, output: phi, unwrap: true}
+         n_samples: {stages: init, output: n_samples, unwrap: true}
+         outfile: '{workdir}/out.np'
+         delay: 5
+      step: {$ref: 'steps.yml#/weinberg_delay'}
+  - name: detsim
+    dependencies: [generate]
+    scheduler:
+      scheduler_type: singlestep-stage
+      parameters:
+         inputfile:   {stages: generate, output: outfile, unwrap: true}
+         outfile:  '{workdir}/out.np'
+         delay: 5
+      step: {$ref: 'steps.yml#/softlink_delay'}
+  - name: recontructiona
+    dependencies: [detsim]
+    scheduler:
+      scheduler_type: singlestep-stage
+      parameters:
+         inputfile:   {stages: detsim, output: outfile, unwrap: true}
+         outfile:  '{workdir}/out.np'
+         delay: 5
+      step: {$ref: 'steps.yml#/softlink_delay'}
+  - name: feature_extraction
+    dependencies: [recontructiona]
+    scheduler:
+      scheduler_type: singlestep-stage
+      parameters:
+         inputfile:   {stages: recontructiona, output: outfile, unwrap: true}
+         outfile:  '{workdir}/out.np'
+         delay: 5
+      step: {$ref: 'steps.yml#/softlink_delay'}

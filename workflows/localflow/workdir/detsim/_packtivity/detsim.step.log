@@ -1,0 +1,4 @@
+2017-06-08 22:15:00,117 - packtivity_logger_detsim.step - INFO - running local command ln -s /Users/lukas/Code/active_sciencing/workflows/localflow/workdir/generate/out.np /Users/lukas/Code/active_sciencing/workflows/localflow/workdir/detsim/out.np
+2017-06-08 22:15:00,117 - packtivity_logger_detsim.step - INFO - changing to workdirectory /Users/lukas/Code/active_sciencing/workflows/localflow/workdir/detsim
+2017-06-08 22:15:00,130 - packtivity_logger_detsim.step - INFO - changing back to original directory /Users/lukas/Code/active_sciencing/workflows/localflow
+2017-06-08 22:15:00,136 - packtivity_logger_detsim.step - INFO - publishing data: {'outfile': '/Users/lukas/Code/active_sciencing/workflows/localflow/workdir/detsim/out.np'}

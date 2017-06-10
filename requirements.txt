@@ -2,5 +2,8 @@ jupyter
 matplotlib
 scipy
 numpy
-scikit-learn
 scikit-optimize
+emcee
+yadage
+celery
+redis

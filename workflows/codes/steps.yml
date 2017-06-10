@@ -1,0 +1,17 @@
+weinberg:
+  process:
+    process_type: interpolated-script-cmd
+    interpreter: python
+    script: |
+      import weinberg
+      import numpy as np
+
+      data = weinberg.simulator(theta = {theta}, phi = {phi}, n_samples = {n_samples})
+      np.save(open('{outfile}','w'), data)
+  environment:
+    environment_type: docker-encapsulated
+    image: lukasheinrich/ycomb_fastweinberg
+  publisher:
+    publisher_type: 'frompar-pub'
+    outputmap:
+      outfile: 'outfile'
