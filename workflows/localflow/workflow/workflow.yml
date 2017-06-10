@@ -17,7 +17,7 @@ stages:
          inputfile:   {stages: generate, output: outfile, unwrap: true}
          outfile:  '{workdir}/out.np'
       step: {$ref: 'steps.yml#/softlink'}
-  - name: recontructiona
+  - name: reconstruction
     dependencies: [detsim]
     scheduler:
       scheduler_type: singlestep-stage
@@ -26,10 +26,10 @@ stages:
          outfile:  '{workdir}/out.np'
       step: {$ref: 'steps.yml#/softlink'}
   - name: feature_extraction
-    dependencies: [recontructiona]
+    dependencies: [reconstruction]
     scheduler:
       scheduler_type: singlestep-stage
       parameters:
-         inputfile:   {stages: recontructiona, output: outfile, unwrap: true}
+         inputfile:   {stages: reconstruction, output: outfile, unwrap: true}
          outfile:  '{workdir}/out.np'
       step: {$ref: 'steps.yml#/softlink'}
