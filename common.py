@@ -16,7 +16,7 @@ def lnprior(theta, prior):
 
 def lnlike(theta, x, phi,simulator, simulation_kwargs = dict(n_samples = 5000), distr_kwargs = {}, logpdf_kwargs = {}):
     mc = simulator(theta,phi, **simulation_kwargs)
-    p = distr.Distribution(name = '', samples = mc, **distr_kwargs)
+    p = distr.Distribution(name = 'density', samples = mc, **distr_kwargs)
     logpdf = p.approx_logpdf(**logpdf_kwargs)
     return np.sum(logpdf(x))
 
