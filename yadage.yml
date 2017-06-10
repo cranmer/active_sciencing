@@ -1,0 +1,14 @@
+toplevel: github:lukasheinrich/weinberg-exp:example_yadage
+workflow: rootflow.yml
+outputs: merge/out.jsonl
+archive: https://raw.githubusercontent.com/lukasheinrich/weinberg-exp/master/example_yadage/input.zip
+pars:
+  nevents: 10000
+  seeds: [1,2,3,4]
+  runcardtempl: run_card.templ
+  proccardtempl: sm_proc_card.templ
+  sqrtshalf: 45
+  polbeam1: 0
+  polbeam2: 0
+  Gf: 1.766390e-05
+  paramcardtempl: param_card.templ
