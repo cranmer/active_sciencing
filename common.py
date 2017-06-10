@@ -8,6 +8,10 @@ import bayesopt
 import plots
 import time
 
+import science_loop_widget
+import eig_widget
+from ipywidgets import widgets
+
 def lnprior(theta, prior):
     p = prior.pdf(theta)
     if p <= 1e-8:
@@ -90,6 +94,22 @@ def expected_information_gain(phi, prior, emcee_kwargs, sim_n_data , map_bins, w
     pool.join()
     return np.mean(eig)
 
+def overview_widgets(model):
+    science_wdg = science_loop_widget.loopwidget()
+    collect_ui  = model.collect_widget()
+    eig_wdg     = eig_widget.widget()
+    sub_widgets = [science_wdg,collect_ui,eig_wdg]
+    return widgets.HBox([science_wdg.view,collect_ui,eig_wdg]), [science_wdg,collect_ui,eig_wdg] 
+
+def eig_search_settings(model,ndata, widget, mcmc_length = 50):
+    eig_kwargs = {'emcee_kwargs' : {
+         'n_chainlen': mcmc_length,
+         'lnprob_args': model.details_likelihood_settings},
+      'sim_n_data': ndata,
+      'map_bins': model.details_map_bins,
+      'widget': widget
+     }
+    return eig_kwargs
 
 def design_next_experiment_bayesopt(prior,phi_bounds, eig_kwargs,
     n_totalcalls=10, n_random_calls = 5, ax = None, fig = None, widget = None):

@@ -52,7 +52,6 @@ def load_data(adageobj):
 
 def simulator(theta,phi,n_samples, widget = None, delay = False):
     theta, phi, n_samples = float(theta), float(phi), int(n_samples)
-    sys.stdout.write('.')
 
     uniqdir = 'work_'+''.join(str(uuid.uuid4()).split('-')[:2])
     workdir = os.path.join(os.environ.get('YCOMB_WOKRKDIR_BASE',os.path.abspath(os.curdir)),uniqdir)
