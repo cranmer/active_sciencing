@@ -35,6 +35,6 @@ Interesingly, we will use the simulator not only to perform inference on the par
  * [demo_gaussian.ipynb](demo_gaussian.ipynb) Runs a fast demo with a simple Gaussian simulator
  * [demo_weinberg.ipynb](demo_weinberg.ipynb) Runs a fast demo with an approximate physics-inspired simulation locally
  * [demo_weinberg_yadage.ipynb](demo_weinberg_yadage_full.ipynb) Runs a slower demo with an approximate physics-inspired simulation through a workflow system. This measures the [Weinberg angle](https://en.wikipedia.org/wiki/Weinberg_angle) in the standard model of particle physics.
- * [demo_weinberg_yadage_full.ipynb](demo_weinberg_yadage_full.ipynb) Runs a much slower demo with a [real Physics simulator workflow](https://github.com/lukasheinrich/weinberg-exp/blob/master/README.md). The [Physics simulator workflow](https://github.com/lukasheinrich/weinberg-exp/blob/master/README.md)
+ * [demo_weinberg_yadage_full.ipynb](demo_weinberg_yadage_full.ipynb) Runs a much slower demo with a [real Physics simulator workflow](https://github.com/lukasheinrich/weinberg-exp/blob/master/README.md). 
 
 
