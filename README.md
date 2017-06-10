@@ -25,30 +25,14 @@ The point of this notebook is to explore the synergy of three powerful technique
  
 Together, these three ideas can be combined to enable an efficient and automated loop of the scientific method -- at least, for a sufficiently well posed problem. The scientist's input to the system are:
 
- * an external workflow that implements some experimental protocol 
- * an external workflow that implements a simulator for those experiments, which depends on some theoretical parameters that we would like to infer.
+ * an external workflow that implements some experimental protocol (orange **Exp** component)
+ * an external workflow that implements a simulator for those experiments, which depends on some theoretical parameters that we would like to infer (orange **Sim** component).
+
  
 Interesingly, we will use the simulator not only to perform inference on the parameters, but also to design the next experiment (this is where active learning comes in).
 
-Notation:
+## Example
 
-   * $\phi$ : Parameters that specify the experimental configuration
+See the [Gaussian Demo](demo_gaussian.ipynb) for an example.
 
-   * $\theta$: Parameters of the theory / simulator, which we would like to infer from the experimental data
-
-   * $X$ : Data generated from the experiment or simulator
-
-   ## Step 3: Optimize Experimental Configuration
-
-Based on the updated posterior $p(\theta)$ we will consider future experiments with configuration $\phi$. For each of those configurations, we will run several simulations of the experiment and perform inference on those simulated datasets to estimate the expected information gain (EIG)
-
-\begin{equation}
-EIG(\phi) =  \int dx d\theta \; p(x | \theta) p(\theta) \big [ H\left [P(\theta) \right] - H\left[ P(\theta\, |\, x) \right] \big ] \approx \int dx  \; p(x | \theta_{MAP}) \big [ H\left [P(\theta) \right] - H\left[ P(\theta\, |\, x) \right] \big ]
-\end{equation}
-where
-\begin{equation}
-H\left [P(\theta) \right] = \int P(\theta) \log P(\theta) d\theta 
-\end{equation}
-
-To efficiently optimize $EIG[\phi]$ we will use an active learning procedure like Bayesian Optimization.
 
